@@ -12,11 +12,13 @@ Install the required dependencies with:
 2. In this folder clone this repository
 3. Run `colcon build --symlink-install`
 4. Source your ros2 setup with `source /opt/ros/ROSVERSION/setup.zsh` replacing `ROSVERSION`with your installed version
+5. Source your robot with `source install/setup.zsh`
 
 ### Running the robot in a gazebo simulation
 
-5. Run the gazebo simulation with `ros2 launch traxxas launch_sim.launch.py`
+6. Run the gazebo simulation with `ros2 launch traxxas launch_sim.launch.py`
+7. Run teleop keyboard with `ros2 run teleop_twist_keyboard teleop_twist_keyboard`
 
 ### Running the robot in rViz
 
-5. You can just launch your robot with `ros2 launch traxxas rsp.launch.py`. In this case, don't forget to launch the joint_state_publisher with `ros2 run joint_state_publisher_gui joint_state_publisher_gui`
+6. You can just launch your robot with `ros2 launch traxxas rsp.launch.py`. In this case, don't forget to launch the joint_state_publisher with `ros2 run joint_state_publisher_gui joint_state_publisher_gui`
