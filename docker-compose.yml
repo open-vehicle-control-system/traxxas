@@ -26,6 +26,9 @@ services:
     env_file:
       - path: ./docker/default.env
         required: true
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${XAUTHORITY}:/root/.Xauthority
     privileged: true
     command: ros2 launch traxxas rsp.launch.py
     depends_on:
