@@ -10,9 +10,9 @@ Install the required dependencies with:
 
 1. Create a folder on your computer
 2. In this folder clone this repository
-3. Run `colcon build --symlink-install`
+3. Run `colcon build --symlink-install` from the folder you created in step 1
 4. Source your ros2 setup with `source /opt/ros/ROSVERSION/setup.zsh` replacing `ROSVERSION`with your installed version
-5. Source your robot with `source install/setup.zsh`
+5. Source your robot with `source install/setup.zsh` from the folder you created in step 1
 
 ### Running the robot in a gazebo simulation
 
