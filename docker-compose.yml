@@ -1,0 +1,43 @@
+services:
+  robot-simulation:
+    build: .
+    env_file:
+      - path: ./docker/default.env
+        required: true
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${XAUTHORITY}:/root/.Xauthority
+    privileged: true
+    command: ros2 launch traxxas launch_sim.launch.py
+    profiles:
+      - simulation
+
+  teleop:
+    build: .
+    env_file:
+      - path: ./docker/default.env
+        required: true
+    command: ros2 run teleop_twist_keyboard teleop_twist_keyboard
+    profiles:
+      - donotstart
+
+  robot:
+    build: .
+    env_file:
+      - path: ./docker/default.env
+        required: true
+    privileged: true
+    command: ros2 launch traxxas rsp.launch.py
+    depends_on:
+      - joint_state_publisher
+
+  joint_state_publisher:
+    build: .
+    env_file:
+      - path: ./docker/default.env
+        required: true
+    command: ros2 run joint_state_publisher_gui joint_state_publisher_gui
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${XAUTHORITY}:/root/.Xauthority
+    privileged: true
