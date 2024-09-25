@@ -19,7 +19,7 @@ services:
         required: true
     command: ros2 run teleop_twist_keyboard teleop_twist_keyboard
     profiles:
-      - donotstart
+      - do-not-start
 
   robot:
     build: .
@@ -30,6 +30,8 @@ services:
     command: ros2 launch traxxas rsp.launch.py
     depends_on:
       - joint_state_publisher
+    profiles:
+      - ""
 
   joint_state_publisher:
     build: .
@@ -41,3 +43,5 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ${XAUTHORITY}:/root/.Xauthority
     privileged: true
+    profiles:
+      - ""
