@@ -36,6 +36,19 @@ services:
     profiles:
       - ""
 
+  rviz:
+    build: .
+    env_file:
+      - path: ./docker/default.env
+        required: true
+    command: rviz2 -d /usr/src/app/traxxas.rviz
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${XAUTHORITY}:/root/.Xauthority
+    privileged: true
+    profiles:
+      - ""
+
   joint_state_publisher:
     build: .
     env_file:
