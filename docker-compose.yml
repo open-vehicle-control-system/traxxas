@@ -43,6 +43,7 @@ services:
         required: true
     command: rviz2 -d /usr/src/app/traxxas.rviz
     volumes:
+      - ./traxxas.rviz:/usr/src/app/traxxas.rviz
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ${XAUTHORITY}:/root/.Xauthority
     privileged: true
@@ -59,5 +60,25 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ${XAUTHORITY}:/root/.Xauthority
     privileged: true
+    profiles:
+      - ""
+  
+  cv_bridgex:
+    build: /home/marc/Projects/ovcs/libraries/cv_bridgex
+    env_file:
+      - path: ./docker/default.env
+        required: true 
+    volumes:
+      - /home/marc/Projects/ovcs/libraries/cv_bridgex:/usr/src/app
+      - /dev/video0:/dev/video0
+      - /dev/video1:/dev/video1
+      - /dev/video2:/dev/video2
+      - /dev/video3:/dev/video3
+      - /dev/video4:/dev/video4
+      - /dev/video5:/dev/video5
+    privileged: true
+    command: iex -S mix
+    depends_on:
+      - rviz
     profiles:
       - ""
